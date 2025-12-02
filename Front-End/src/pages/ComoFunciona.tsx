@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom"; // O useState e useEffect foram removidos
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import { Search, Cog, Heart } from "lucide-react";
 
 export default function ComoFunciona() {
-  // O 'navigate' ainda é necessário para o botão no final da página
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // A lógica de verificação de autenticação foi completamente removida daqui.
 
   const steps = [
     {
@@ -30,10 +30,8 @@ export default function ComoFunciona() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* 
-        Ajustado para 'isAuthenticated={false}' para mostrar o menu público 
-        com as opções de Login e Cadastro.
-      */}
+      {/* O Header foi adicionado aqui */}
+      <Header />
       
       <main className="flex-1 container mx-auto px-4 py-16">
         <div className="text-center mb-16">
