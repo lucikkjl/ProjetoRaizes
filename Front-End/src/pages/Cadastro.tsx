@@ -101,7 +101,7 @@ export default function Cadastro() {
               <Input
                 id="areaOfExpertise"
                 type="text"
-                placeholder="Ex: Desenvolvedor, Designer, etc."
+                placeholder="Ex: Tecnologia, Marketing, etc."
                 value={areaOfExpertise}
                 onChange={(e) => setAreaOfExpertise(e.target.value)}
                 className="pl-10"

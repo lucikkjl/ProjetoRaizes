@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import heroImage from "@/assets/maos_dadas.jpg";
 
 export default function Home() {
@@ -13,12 +18,15 @@ export default function Home() {
     navigate("/ongs-parceiras");
   };
 
+  const handleOngClick = () => {
+    navigate("/cadastro-ong");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header/>
 
       <main className="flex-1">
-        {/* Hero Section */}
         <section className="container mx-auto px-4 py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -31,14 +39,49 @@ export default function Home() {
                 criando oportunidades de aprendizado e crescimento para comunidades
                 que mais precisam de apoio educacional.
               </p>
+              
+              <div className="flex flex-wrap items-center gap-4">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={handleVolunteerClick}
+                      size="lg"
+                      className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-3 text-lg"
+                    >
+                      Quero ser voluntário
+                    </Button>
+                  </TooltipTrigger>
+                  {/* AJUSTE APLICADO AQUI */}
+                  <TooltipContent 
+                    className="bg-accent text-accent-foreground"
+                    sideOffset={5}
+                    side="top"
+                  >
+                    <p>para profissionais</p>
+                  </TooltipContent>
+                </Tooltip>
 
-              <Button
-                onClick={handleVolunteerClick}
-                size="lg"
-                className="bg-primary hover:bg-primary-hover text-primary-foreground px-8 py-3 text-lg"
-              >
-                Quero ser voluntário
-               </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={handleOngClick}
+                      size="lg"
+                      variant="secondary"
+                      className="px-8 py-3 text-lg"
+                    >
+                      Quero encontrar um voluntário
+                    </Button>
+                  </TooltipTrigger>
+                  {/* AJUSTE APLICADO AQUI */}
+                  <TooltipContent 
+                    className="bg-accent text-accent-foreground"
+                    sideOffset={5}
+                    side="top"
+                  >
+                    <p>para instituições</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
             </div>
 
             <div className="flex justify-center">
@@ -51,13 +94,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Como isAuthenticated é sempre 'true', esta seção será sempre exibida. */}
         {isAuthenticated && (
           <section className="bg-accent py-16">
             <div className="container mx-auto px-4">
               <div className="text-center space-y-6">
                 <h2 className="text-3xl font-bold text-primary">
-                  Bem-vindo de volta!
+                  Bem-vindo!
                 </h2>
                 <p className="text-lg text-accent-foreground max-w-2xl mx-auto">
                   Explore nossas ONGs parceiras e descubra como você pode fazer a diferença
@@ -85,7 +127,6 @@ export default function Home() {
         )}
       </main>
 
-      {/* A variante do Footer será sempre 'complete'. */}
       <Footer variant={isAuthenticated ? "complete" : "simple"} />
     </div>
   );
